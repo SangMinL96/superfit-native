@@ -17,6 +17,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     width: '100%',
     height: 50,
     backgroundColor: 'white',
@@ -27,11 +28,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    width: 150,
     position: 'absolute',
     textAlign: 'center',
     left: '50%',
-    transform: [{ translateX: -75 }],
+    transform: [{ translateX: '-50%' }],
     fontSize: 18,
   },
 });

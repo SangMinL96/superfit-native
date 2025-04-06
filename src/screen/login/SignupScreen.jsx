@@ -9,7 +9,7 @@ import theme from '../../style/theme';
 
 function SignupScreen() {
   const setIsLogined = useGlobalState(state => state.setIsLogined);
-  const { isOauth = '0', login_type, sns_id, user_id, step = 'terms' } = useRoute().params;
+  const { isOauth = '0', login_type, sns_id, user_id, step } = useRoute().params;
   const { webviewRef, script, onNavigationStateChange, androidState, onPressHardwareBackButton } = useDeviceBack();
 
   return (
