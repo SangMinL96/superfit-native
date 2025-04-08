@@ -10,6 +10,7 @@
     "web": "expo start --web",
     "cacheR": "expo r -c && expo start -c",
     "and1": "export ANDROID_HOME=/Users/sangminl96/Library/Android/sdk",
+    "and1-encar": "export ANDROID_HOME=/Users/encr23n10077/Library/Android/sdk",
     "and2": "export PATH=$ANDROID_HOME/tools:$PATH",
     "and3": "export PATH=$ANDROID_HOME/platform-tools:$PATH",
     "doctor": "npx expo-doctor@latest"
@@ -21,6 +22,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "^52.0.40",
+    "expo-dev-client": "~5.0.19",
     "expo-image": "~2.0.6",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
