@@ -3,11 +3,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 function Header({ title, rightComponent, onBackClick }) {
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={onBackClick}>
         <Ionicons name='chevron-back-sharp' size={28} color='black' />
       </TouchableOpacity>
-      <Text style={[styles.title]}>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
       <View>{rightComponent}</View>
     </View>
   );
@@ -26,12 +26,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 16,
   },
   title: {
     position: 'absolute',
+    left: 0,
+    right: 0,
     textAlign: 'center',
-    left: '50%',
-    transform: [{ translateX: '-50%' }],
     fontSize: 18,
+    marginLeft: 100,
+    marginRight: 100,
+    fontWeight: '500',
   },
 });
