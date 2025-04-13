@@ -38,9 +38,9 @@ function NaverLoginScreen() {
             const params = {
               step: 2,
               isOauth: 1,
-              login_type: data.login_type,
-              sns_id: data.sns_id,
-              user_id: data.user_id,
+              login_type: data.loginType,
+              sns_id: data.snsId,
+              infoData: data.infoData,
             };
             navigation.dispatch(insertBeforeLast('Signup', params));
             navigation.goBack();

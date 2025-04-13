@@ -6,20 +6,20 @@ import { useGlobalState } from '../../store/useGlobalState';
 import { useDeviceBack } from '../../hooks/useDeviceBack';
 import { insertBeforeLast, jsonParse, setStorage } from '../../common/common';
 import Header from '../../common/ui/Header';
-import theme from '../../style/theme'
+import theme from '../../style/theme';
 
-function PhoneLogin() {
+function NomalLoginScreen() {
   const navigation = useNavigation();
   const { webviewRef, script, onNavigationStateChange, androidState, onPressHardwareBackButton } = useDeviceBack();
   const [setIsLogined] = useGlobalState(state => [state.setIsLogined], shallow);
   return (
     <SafeAreaView style={theme.container}>
-      <Header title={'휴대폰 로그인'} onBackClick={() => onPressHardwareBackButton(true)} />
+      <Header title={'슈퍼핏 로그인'} onBackClick={() => onPressHardwareBackButton(true)} />
       <WebView
         ref={webviewRef}
         onNavigationStateChange={onNavigationStateChange}
         source={{
-          uri: `http://127.0.0.1:3000/login?step=1`,
+          uri: `http://127.0.0.1:3000/signin`,
         }}
         originWhitelist={['*']}
         style={{ flex: 1 }}
@@ -48,4 +48,4 @@ function PhoneLogin() {
   );
 }
 
-export default PhoneLogin;
+export default NomalLoginScreen;

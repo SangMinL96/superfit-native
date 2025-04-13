@@ -11,9 +11,9 @@ const URL = Platform.OS === 'android' ? 'http://192.168.25.61:3000' : 'http://12
 
 function SignupScreen() {
   const setIsLogined = useGlobalState(state => state.setIsLogined);
-  const { isOauth = '0', login_type, sns_id, user_id, step, infoData } = useRoute().params;
+  const { isOauth = '0', login_type, sns_id, step, infoData } = useRoute().params;
   const { webviewRef, script, onNavigationStateChange, androidState, onPressHardwareBackButton } = useDeviceBack();
-  const infoQuery = `email=${infoData?.email}&gender=${infoData?.gender}&nickname=${infoData?.nickname}`;
+  const infoQuery = `email=${infoData?.email}&gender=${infoData?.gender}&nickname=${infoData?.nickname}&hp=${infoData?.hp}`;
   return (
     <SafeAreaView style={theme.container}>
       <Header title='회원가입' onBackClick={() => onPressHardwareBackButton(true)} />
@@ -21,7 +21,7 @@ function SignupScreen() {
         ref={webviewRef}
         onNavigationStateChange={onNavigationStateChange}
         source={{
-          uri: `${URL}/signup?step=${step}&isOauth=${isOauth}&login_type=${login_type}&sns_id=${sns_id}&user_id=${user_id}&${infoQuery}`,
+          uri: `${URL}/signup?step=${step}&isOauth=${isOauth}&login_type=${login_type}&sns_id=${sns_id}&${infoQuery}`,
         }}
         javaScriptEnabled
         originWhitelist={['*']}
