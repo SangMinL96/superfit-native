@@ -18,7 +18,7 @@ function Form() {
         <Icon name='netflix' size={24} style={[styles.icon]} />
         <Text style={[styles.LoginButtonText]}>네이버 로그인</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.LoginButton, { backgroundColor: '#0028ef' }]} onPress={() => navigation.navigate('nomalLogin')}>
+      <TouchableOpacity style={[styles.LoginButton, { backgroundColor: '#0028ef' }]} onPress={() => navigation.navigate('nomalLogin', { loginType: 'basic' })}>
         <Text style={[styles.LoginButtonText]}>일반 로그인</Text>
       </TouchableOpacity>
     </View>

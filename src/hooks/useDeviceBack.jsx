@@ -6,7 +6,6 @@ export const useDeviceBack = () => {
   const navigate = useNavigation();
   const webviewRef = useRef();
   const [isCanGoBack, setIsCanGoBack] = useState(false);
-  console.log(isCanGoBack);
   const onPressHardwareBackButton = (isBackbutton = false) => {
     if (webviewRef.current && isCanGoBack) {
       setTimeout(() => webviewRef.current?.goBack(), 100);
@@ -25,7 +24,7 @@ export const useDeviceBack = () => {
       BackHandler.removeEventListener('hardwareBackPress', onPressHardwareBackButton);
     };
   }, [isCanGoBack]);
-  const onNavigationStateChange = (navState) => {
+  const onNavigationStateChange = navState => {
     setIsCanGoBack(navState.canGoBack);
   };
 
@@ -48,7 +47,7 @@ export const useDeviceBack = () => {
 
   true;
 `;
-  const androidState = (state) => {
+  const androidState = state => {
     if (state.data === 'navigationStateChange') {
       setIsCanGoBack(state.canGoBack);
     }

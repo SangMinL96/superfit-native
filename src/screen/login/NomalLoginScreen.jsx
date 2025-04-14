@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
 import WebView from 'react-native-webview';
 import { shallow } from 'zustand/shallow';
@@ -9,6 +9,8 @@ import Header from '../../common/ui/Header';
 import theme from '../../style/theme';
 
 function NomalLoginScreen() {
+  const route = useRoute();
+  const { loginType = 'basic' } = route.params;
   const navigation = useNavigation();
   const { webviewRef, script, onNavigationStateChange, androidState, onPressHardwareBackButton } = useDeviceBack();
   const [setIsLogined] = useGlobalState(state => [state.setIsLogined], shallow);
@@ -19,7 +21,7 @@ function NomalLoginScreen() {
         ref={webviewRef}
         onNavigationStateChange={onNavigationStateChange}
         source={{
-          uri: `http://127.0.0.1:3000/signin`,
+          uri: `http://127.0.0.1:3000/signin?loginType=${loginType}`,
         }}
         originWhitelist={['*']}
         style={{ flex: 1 }}

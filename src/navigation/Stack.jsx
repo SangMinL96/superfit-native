@@ -9,6 +9,7 @@ import NomalLoginScreen from '../screen/login/NomalLoginScreen';
 import { useGlobalState } from '../store/useGlobalState';
 import { useLayoutEffect } from 'react';
 import { getStorage, setStorage } from '../common/common';
+import StackScreen from '../screen/StackScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ function Stacks() {
       {isLogined === 'true' ? (
         <>
           <Stack.Screen name='Main' component={Tabs} />
+          <Stack.Screen name='stack' component={StackScreen} />
         </>
       ) : (
         <>

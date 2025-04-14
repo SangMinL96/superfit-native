@@ -1,15 +1,17 @@
 import { Image } from 'expo-image';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Form from './Form';
+import { useNavigation } from '@react-navigation/native';
 
 function LoginIndex() {
+  const navigation = useNavigation();
   return (
     <View style={[styles.container]}>
       <View style={[styles.btnContainer]}>
         <TouchableOpacity style={[styles.user_type_active]}>
           <Text style={[styles.user_text]}>일반회원</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.user_type]}>
+        <TouchableOpacity style={[styles.user_type]} onPress={() => navigation.navigate('nomalLogin', { loginType: 'business' })}>
           <Text style={[styles.user_text]}>제휴회원</Text>
         </TouchableOpacity>
       </View>
