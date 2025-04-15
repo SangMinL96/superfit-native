@@ -12,7 +12,7 @@ function StackScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={theme.container}>
-        <Header title={headerName} onBackClick={() => onPressHardwareBackButton(true)} />
+        <Header title={headerName || ''} onBackClick={() => onPressHardwareBackButton(true)} />
         <WebView
           ref={webviewRef}
           onNavigationStateChange={onNavigationStateChange}
