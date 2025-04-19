@@ -3,32 +3,31 @@ import { SafeAreaView } from 'react-native';
 import WebView from 'react-native-webview';
 import { shallow } from 'zustand/shallow';
 import { useGlobalState } from '../../store/useGlobalState';
-import { useDeviceBack } from '../../hooks/useDeviceBack';
+import { useNextDeviceBack } from '../../hooks/useDeviceBack';
 import { insertBeforeLast, jsonParse, setStorage } from '../../common/common';
 import Header from '../../common/ui/Header';
-import theme from '../../style/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function NomalLoginScreen() {
   const route = useRoute();
   const { loginType = 'basic' } = route.params;
   const navigation = useNavigation();
-  const { webviewRef, script, onNavigationStateChange, androidState, onPressHardwareBackButton } = useDeviceBack();
+  const { webviewRef, onPressHardwareBackButton, onStackBack } = useNextDeviceBack(`/signin?loginType=${loginType}`);
   const [setIsLogined] = useGlobalState(state => [state.setIsLogined], shallow);
+  const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView style={theme.container}>
-      <Header title={'슈퍼핏 로그인'} onBackClick={() => onPressHardwareBackButton(true)} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white', paddingTop: insets.top }}>
+      <Header title={'슈퍼핏 로그인'} onBackClick={() => onPressHardwareBackButton()} />
       <WebView
         ref={webviewRef}
-        onNavigationStateChange={onNavigationStateChange}
         source={{
-          uri: `http://127.0.0.1:3000/signin?loginType=${loginType}`,
+          uri: `http://192.168.25.61:3000/signin?loginType=${loginType}`,
         }}
         originWhitelist={['*']}
         style={{ flex: 1 }}
         allowsBackForwardNavigationGestures
-        injectedJavaScript={script}
         onMessage={({ nativeEvent: state }) => {
-          androidState(state);
+          onStackBack(state);
           const data = jsonParse(state.data);
           if (data.type === 'goBack') {
             navigation.goBack();

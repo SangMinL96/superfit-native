@@ -27,30 +27,27 @@ export const useDeviceBack = () => {
   const onNavigationStateChange = navState => {
     setIsCanGoBack(navState.canGoBack);
   };
+  return { onNavigationStateChange, webviewRef, onPressHardwareBackButton };
+};
 
-  const script = `
-  (function() {
-    function wrap(fn) {
-      return function wrapper() {
-        var res = fn.apply(this, arguments);
-        window.ReactNativeWebView.postMessage('navigationStateChange');
-        return res;
-      }
-    }
-
-    history.pushState = wrap(history.pushState);
-    history.replaceState = wrap(history.replaceState);
-    window.addEventListener('popstate', function() {
-      window.ReactNativeWebView.postMessage('navigationStateChange');
-    });
-  })();
-
-  true;
-`;
-  const androidState = state => {
-    if (state.data === 'navigationStateChange') {
-      setIsCanGoBack(state.canGoBack);
+export const useNextDeviceBack = url => {
+  const navigate = useNavigation();
+  const webviewRef = useRef();
+  const onPressHardwareBackButton = () => {
+    const jsCode = `window.routerBack('${url}'); true;`;
+    webviewRef.current.injectJavaScript(jsCode);
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onPressHardwareBackButton);
+    };
+  }, []);
+  const onStackBack = state => {
+    if (state.data === 'stackBack') {
+      setTimeout(() => navigate.goBack(), 100);
     }
   };
-  return { onNavigationStateChange, webviewRef, onPressHardwareBackButton, script, androidState };
+  return { webviewRef, onPressHardwareBackButton, onStackBack };
 };

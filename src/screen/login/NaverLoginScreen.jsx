@@ -9,16 +9,16 @@ import { insertBeforeLast, setStorage } from '../../common/common';
 import Header from '../../common/ui/Header';
 import theme from '../../style/theme';
 import { Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const URL = Platform.OS === 'android' ? 'http://192.168.25.61:3000' : 'http://127.0.0.1:3000';
 const REDIRECT_URI = `${URL}/oauth/naver/callback`;
 function NaverLoginScreen() {
   const navigation = useNavigation();
   const [setIsLogined] = useGlobalState(state => [state.setIsLogined], shallow);
-
   const { webviewRef, onPressHardwareBackButton } = useDeviceBack();
   return (
-    <View style={theme.container}>
-      <Header title='네이버 로그인' onBackClick={() => onPressHardwareBackButton(true)} />
+    <SafeAreaView style={theme.container}>
+      <Header title='네이버 로그인' onBackClick={() => onPressHardwareBackButton()} />
       <WebView
         ref={webviewRef}
         source={{
@@ -47,7 +47,7 @@ function NaverLoginScreen() {
           }
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

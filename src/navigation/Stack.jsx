@@ -31,7 +31,7 @@ function Stacks() {
         headerShown: false,
       }}
     >
-      {isLogined === 'true' ? (
+      {isLogined !== 'true' ? (
         <>
           <Stack.Screen name='Main' component={Tabs} />
           <Stack.Screen name='stack' component={StackScreen} />

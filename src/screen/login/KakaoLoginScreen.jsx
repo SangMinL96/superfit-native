@@ -8,6 +8,7 @@ import { useDeviceBack } from '../../hooks/useDeviceBack';
 import { insertBeforeLast, setStorage } from '../../common/common';
 import Header from '../../common/ui/Header';
 import theme from '../../style/theme';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const URL = Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://127.0.0.1:3000';
 const REDIRECT_URI = `${URL}/oauth/kakao/callback`;
 function KakaoLoginScreen() {
@@ -16,7 +17,7 @@ function KakaoLoginScreen() {
 
   const { webviewRef, onPressHardwareBackButton } = useDeviceBack();
   return (
-    <View style={theme.container}>
+    <SafeAreaView style={theme.container}>
       <Header title='카카오 로그인' onBackClick={() => onPressHardwareBackButton(true)} />
       <WebView
         ref={webviewRef}
@@ -46,7 +47,7 @@ function KakaoLoginScreen() {
           }
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
