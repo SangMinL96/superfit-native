@@ -21,6 +21,7 @@ function SignupScreen() {
         ref={webviewRef}
         source={{
           uri: `${URL}${asPath}`,
+          d,
         }}
         javaScriptEnabled
         originWhitelist={['*']}

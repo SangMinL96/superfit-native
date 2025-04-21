@@ -9,7 +9,7 @@ import { insertBeforeLast, setStorage } from '../../common/common';
 import Header from '../../common/ui/Header';
 import theme from '../../style/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
-const URL = Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://127.0.0.1:3000';
+const URL = Platform.OS === 'android' ? 'http://192.168.25.61:3000' : 'http://127.0.0.1:3000';
 const REDIRECT_URI = `${URL}/oauth/kakao/callback`;
 function KakaoLoginScreen() {
   const navigation = useNavigation();

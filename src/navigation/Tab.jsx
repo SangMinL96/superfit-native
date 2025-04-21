@@ -1,6 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeScreen from '../screen/Home/HomeScreen';
+import HomeScreen from '../screen/main/HomeScreen';
+import ScheduleScreen from '../screen/main/ScheduleScreen';
+import CreateScreen from '../screen/main/CreateScreen';
+import ProfileScreen from '../screen/main/ProfileScreen';
 const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
@@ -10,10 +13,10 @@ function Tabs() {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Map') {
-            iconName = focused ? 'ios-location' : 'ios-location-outline';
-          } else if (route.name === 'Notice') {
-            iconName = focused ? 'notifications' : 'notifications-outline';
+          } else if (route.name === 'Schdule') {
+            iconName = focused ? 'calendar-clear' : 'calendar-clear-outline';
+          } else if (route.name === 'Create') {
+            iconName = focused ? 'add-circle' : 'add-circle-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
           }
@@ -27,6 +30,9 @@ function Tabs() {
       })}
     >
       <Tab.Screen name='Home' component={HomeScreen} options={{ title: '홈' }} />
+      <Tab.Screen name='Schdule' component={ScheduleScreen} options={{ title: '일정' }} />
+      <Tab.Screen name='Create' component={CreateScreen} options={{ title: '생성' }} />
+      <Tab.Screen name='Profile' component={ProfileScreen} options={{ title: '내정보' }} />
     </Tab.Navigator>
   );
 }
