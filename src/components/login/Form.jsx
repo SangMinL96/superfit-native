@@ -8,6 +8,7 @@ function Form() {
   const handleKakaoLogin = async () => {
     navigation.navigate('kakaoLogin');
   };
+
   return (
     <View style={[styles.container]}>
       <TouchableOpacity style={[styles.LoginButton, { backgroundColor: 'rgb(254,229,0)' }]} onPress={handleKakaoLogin}>
