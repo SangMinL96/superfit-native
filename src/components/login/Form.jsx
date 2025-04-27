@@ -7,6 +7,7 @@ function Form() {
 
   const handleKakaoLogin = async () => {
     navigation.navigate('kakaoLogin');
+    //
   };
 
   return (
